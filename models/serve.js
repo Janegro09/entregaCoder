@@ -1,5 +1,8 @@
-const express   = require('express')
-const cors      = require('cors') 
+const express   = require('express');
+const cors      = require('cors'); 
+
+const { dbConnection } = require('../database/config');
+
 class Server {
 
     constructor() {
@@ -8,11 +11,18 @@ class Server {
         this.productosRoutePath = '/api/productos'
         this.carritoRoutePath = '/api/carrito'
 
+        // Conectar a base de datos
+
+
         // Middelwares
         this.middelwares();
         
         // Rutas de mi aplicacion
         this.routes();
+    }
+
+    async conectarDB() {
+        await dbConnection
     }
 
     middelwares() {
